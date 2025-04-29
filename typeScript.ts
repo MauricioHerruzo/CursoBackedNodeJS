@@ -28,3 +28,19 @@ function greet2(person: string): void{
     console.log("Hola"+ person);
 
 }
+//varios parametros, en objeto, tipados
+function greet3({person, lastName}:{person: string, lastName:string}): void{
+    console.log("Hola"+ person);
+
+}
+
+// unknow , no sabes lo que vas a obtener, para hacer fetch
+let unceertainValue : unknown = "Hello"
+
+// igual que typeoff, existe instanceof, para saber si pertenece a una clase 
+
+// in 
+// Comprobacion de si una propiedad existe en una clase 
+// if("permisos"  in user{
+//     noseque
+// })

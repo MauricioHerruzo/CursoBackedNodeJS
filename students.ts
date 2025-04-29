@@ -1,4 +1,4 @@
-'use strict'
+// 'use strict'
 //Modelar los alumnos de una clase (3); nombre, edad, apellidos, asignaturas(3),
 //las asignaturas tendran 3 notas
 //imprimir el listado de alumnos y la nota media de cada alumno en cada asignatura
@@ -8,7 +8,7 @@
 class Subject {
     name: string;
     grade: number[];
-    constructor(name,grade){
+    constructor(name: string ,grade: number[]){
         this.name = name;
         this.grade= grade;
     }
@@ -22,7 +22,7 @@ class Student {
     lastName : string;
     age: number;
     subjects : Subject[];
-    constructor(name, lastName, age, subjects){
+    constructor(name: number[], lastName:string, age, subjects){
         this.name = name;
         this.lastName = lastName;
         this.age = age;
@@ -37,7 +37,16 @@ class Student {
 }
 
 // Student1
-const manolo = new Student("Manolo","fernandez",22,[new Subject("Matematicas", [10,6,7]),new Subject("Fisica", [8,5,4]),new Subject("Lengua", [1,8,2])]);
+const manolo = new Student(
+    "Manolo",
+    "fernandez",
+    22,
+    [
+        new Subject("Matematicas", [10,6,7]),
+        new Subject("Fisica", [8,5,4]),
+        new Subject("Lengua", [1,8,2])
+    ]
+);
 
 //Studen2
 const alberto = new Student("Alberto","fernandez",22,[new Subject("Matematicas", [10,6,7]),new Subject("Fisica", [8,5,4]),new Subject("Lengua", [1,8,2])]);
@@ -47,7 +56,9 @@ const juan = new Student("Juan","fernandez",22,[new Subject("Matematicas", [10,6
 
 
 function setAVG (subject: Subject) {
-    return parseIntsubject.grade.reduce((total, grade) => ((total + grade) / subject.grade.length)).toFixed(1))
+    return subject.grade.reduce(
+        (total, grade) => ((total + grade) / subject.grade.length)
+    ).toFixed(1)
     // return subject.grade.reduce((total, grade)=> total + grade )/subject.grade.length).toFixed(1);
 }
 
@@ -55,35 +66,51 @@ function passFail (avg){
     let aprovedFailed = "";
     avg >=5 ? aprovedFailed = "Approved"
         : aprovedFailed = "Failed";
+    return aprovedFailed;
 }
 
+instances.forEach(student => {
+    student.subjects.forEach(subject=> {
+        let avg = setAVG(subject);
+        console.log(avg);
+    })
+})
 
-subjectAndAvgGrade.push(`${subjectName}: ${subjectAverageGrade} ${aprovedFailed}`);
-console.log(`\n${studentName}:`);
-subjectAndAvgGrade.forEach(subject => console.log(subject))
 
 
-//Imprimir alumnos y medias
-Student.getAllStudents().forEach(student =>{
-    let studentName: string = student.name
-    let subjects = student.subjects
-    let subjectGrade;
-    let subjectName;
-    let subjectAndAvgGrade: [string, number, string]=[];
-    for(let subject of subjects){
-        let subjectName = subject.name;
-        let subjectAverageGrade = (subject.grade.reduce((total, grade)=> total + grade )/subject.grade.length).toFixed(1);
-        // subjectAverageGrade = subject.grade;
-        //APROVE / FAILED 
-        let aprovedFailed = "";
-        subjectAverageGrade >=5 ? aprovedFailed = "Approved"
-        : aprovedFailed = "Failed";
 
-        subjectAndAvgGrade.push(`${subjectName}: ${subjectAverageGrade} ${aprovedFailed}`);
-    }
 
-    console.log(`\n${studentName}:`);
-    subjectAndAvgGrade.forEach(subject => console.log(subject))
 
-    }
-)
+
+
+
+
+// subjectAndAvgGrade.push(`${subjectName}: ${subjectAverageGrade} ${aprovedFailed}`);
+// console.log(`\n${studentName}:`);
+// subjectAndAvgGrade.forEach(subject => console.log(subject))
+// subjectAndAvgGrade.push(`${subjectName}: ${subjectAverageGrade} ${aprovedFailed}`);
+// console.log(`\n${studentName}:`);
+// subjectAndAvgGrade.forEach(subject => console.log(subject))
+
+
+// //Imprimir alumnos y medias
+// Student.getAllStudents().forEach(student =>{
+//     // let studentName: string = student.name
+//     // let subjects = student.subjects
+//     // let subjectGrade;
+//     // let subjectName;
+//     // let subjectAndAvgGrade: [string, number, string]=[];
+//     // for(let subject of subjects){
+//     //     let subjectName = subject.name;
+//     //     let subjectAverageGrade = (subject.grade.reduce((total, grade)=> total + grade )/subject.grade.length).toFixed(1);
+//         // subjectAverageGrade = subject.grade;
+//         //APROVE / FAILED 
+//         // let aprovedFailed = "";
+//         // subjectAverageGrade >=5 ? aprovedFailed = "Approved"
+//         // : aprovedFailed = "Failed";
+
+//     }
+
+
+//     }
+// )
