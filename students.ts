@@ -6,16 +6,22 @@
 
 
 class Subject {
+    name: string;
+    grade: number;
     constructor(name,grade){
         this.name = name;
         this.grade= grade;
     }
 }
 //No puedo
-let instances = [];
+let instances : Student [] = [];
 class Student {
     //static = metodos o variables para la clase, no accesibles a las instancias
     // static instances = [];
+    name: string;
+    lastName : string;
+    age: number;
+    subjects : Subject[];
     constructor(name, lastName, age, subjects){
         this.name = name;
         this.lastName = lastName;
@@ -25,7 +31,7 @@ class Student {
         //Voy pusheando cada instancia que cree en el array de la clase
         instances.push(this);
     }
-    static getAllStudents(){
+    static getAllStudents(): Student [] {
        return instances;
     } 
 }
@@ -42,7 +48,7 @@ const juan = new Student("Juan","fernandez",22,[new Subject("Matematicas", [10,6
 
 //Imprimir alumnos y medias
 Student.getAllStudents().forEach(student =>{
-    let studentName = student.name
+    let studentName: string = student.name
     let subjects = student.subjects
     let subjectGrade;
     let subjectName;
