@@ -7,7 +7,7 @@
 
 class Subject {
     name: string;
-    grade: number;
+    grade: number[];
     constructor(name,grade){
         this.name = name;
         this.grade= grade;
@@ -46,13 +46,30 @@ const alberto = new Student("Alberto","fernandez",22,[new Subject("Matematicas",
 const juan = new Student("Juan","fernandez",22,[new Subject("Matematicas", [10,6,7]),new Subject("Fisica", [8,5,4]),new Subject("Lengua", [1,8,2])]);
 
 
+function setAVG (subject: Subject) {
+    return parseIntsubject.grade.reduce((total, grade) => ((total + grade) / subject.grade.length)).toFixed(1))
+    // return subject.grade.reduce((total, grade)=> total + grade )/subject.grade.length).toFixed(1);
+}
+
+function passFail (avg){
+    let aprovedFailed = "";
+    avg >=5 ? aprovedFailed = "Approved"
+        : aprovedFailed = "Failed";
+}
+
+
+subjectAndAvgGrade.push(`${subjectName}: ${subjectAverageGrade} ${aprovedFailed}`);
+console.log(`\n${studentName}:`);
+subjectAndAvgGrade.forEach(subject => console.log(subject))
+
+
 //Imprimir alumnos y medias
 Student.getAllStudents().forEach(student =>{
     let studentName: string = student.name
     let subjects = student.subjects
     let subjectGrade;
     let subjectName;
-    let subjectAndAvgGrade=[];
+    let subjectAndAvgGrade: [string, number, string]=[];
     for(let subject of subjects){
         let subjectName = subject.name;
         let subjectAverageGrade = (subject.grade.reduce((total, grade)=> total + grade )/subject.grade.length).toFixed(1);
