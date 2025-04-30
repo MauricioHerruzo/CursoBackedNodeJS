@@ -7,7 +7,7 @@ let numbers2:number []= [1,2,3,4];
 let numbers : number[] | string[] = [1,2,3,4];
 
 // Tuple, TUPLA 
-let user : [string,number] = ["Alice", 25];
+// const user : [string,number] = ["Alice", 25];
 
 // Enum 
 enum Color {Red = "RED", Green = "GREEN", Blue = "BLUE"};
