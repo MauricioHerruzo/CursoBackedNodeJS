@@ -4,6 +4,10 @@
 //imprimir el listado de alumnos y la nota media de cada alumno en cada asignatura
 //Si está aprobado un Aprobado, si está suspenso Suspenso
 
+// TO RUN 
+// npm i -D tsx
+//tsc example.ts TO TYPE CHECK CODE
+// npx tsx example.ts THIS DOES NOT TYPE CHECK CODE
 
 class Subject {
     name: string;
@@ -13,64 +17,60 @@ class Subject {
         this.grade= grade;
     }
 }
-//No puedo
-let instances : Student [] = [];
+
 class Student {
-    //static = metodos o variables para la clase, no accesibles a las instancias
-    // static instances = [];
     name: string;
     lastName : string;
     age: number;
     subjects : Subject[];
-    constructor(name: number[], lastName:string, age, subjects){
+    constructor(name: string, lastName:string, age : number, subjects : Subject[]){
         this.name = name;
         this.lastName = lastName;
         this.age = age;
         this.subjects = subjects;
-        //Podria hacer un array aqui en el constructor y que cada vez que se use se haga un .push de(this) asi se van almacenando y fuera recorrerlas con un bucle
-        //Voy pusheando cada instancia que cree en el array de la clase
-        instances.push(this);
     }
+    //static = metodos o variables para la clase, no accesibles a las instancias
     static getAllStudents(): Student [] {
-       return instances;
+        return instances;
     } 
 }
 
-// Student1
-const manolo = new Student(
-    "Manolo",
-    "fernandez",
-    22,
-    [
-        new Subject("Matematicas", [10,6,7]),
-        new Subject("Fisica", [8,5,4]),
-        new Subject("Lengua", [1,8,2])
-    ]
-);
+let instances : Student []= [    
+    // Student1
+    new Student(
+        "Manolo",
+        "fernandez",
+        22,
+        [
+            new Subject("Matematicas", [10,6,7]),
+            new Subject("Fisica", [8,5,4]),
+            new Subject("Lengua", [1,8,2])
+        ]
+    ),
+    //Student 2
+    new Student("Alberto","fernandez",22,[new Subject("Matematicas", [10,6,7]),new Subject("Fisica", [8,5,4]),new Subject("Lengua", [1,8,2])]),
+    //Student 3
+    new Student("Juan","fernandez",22,[new Subject("Matematicas", [10,6,7]),new Subject("Fisica", [8,5,4]),new Subject("Lengua", [1,8,2])]),
+];
 
-//Studen2
-const alberto = new Student("Alberto","fernandez",22,[new Subject("Matematicas", [10,6,7]),new Subject("Fisica", [8,5,4]),new Subject("Lengua", [1,8,2])]);
-
-//Student3
-const juan = new Student("Juan","fernandez",22,[new Subject("Matematicas", [10,6,7]),new Subject("Fisica", [8,5,4]),new Subject("Lengua", [1,8,2])]);
-
-
+//Set subject avg
 function setAVG (subject: Subject) {
-    return subject.grade.reduce(
-        (total, grade) => ((total + grade) / subject.grade.length)
-    ).toFixed(1)
-    // return subject.grade.reduce((total, grade)=> total + grade )/subject.grade.length).toFixed(1);
+    return (subject.grade.reduce((total, grade) => ((total + grade))) / subject.grade.length).toFixed(1);
 }
 
-function passFail (avg){
+//Pass or Fail subject based on avg
+function passFail (avg:number){
     let aprovedFailed = "";
     avg >=5 ? aprovedFailed = "Approved"
         : aprovedFailed = "Failed";
     return aprovedFailed;
 }
 
+//Print Students
 instances.forEach(student => {
+    console.log(student.name)
     student.subjects.forEach(subject=> {
+        console.log(subject.name)
         let avg = setAVG(subject);
         console.log(avg);
     })
