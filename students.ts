@@ -68,10 +68,13 @@ function passFail (avg:number){
 
 //Print Students
 instances.forEach(student => {
+    //Student name
     console.log(student.name)
     student.subjects.forEach(subject=> {
+        //Subject name
         console.log(subject.name)
         let avg = setAVG(subject);
+        //Subject AVG
         console.log(avg);
     })
 })
