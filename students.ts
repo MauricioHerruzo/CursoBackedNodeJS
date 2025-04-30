@@ -12,7 +12,8 @@
 class Subject {
     name: string;
     grade: number[];
-    constructor(name: string ,grade: number[]){
+
+    constructor(name: string, grade: number[]) {
         this.name = name;
         this.grade= grade;
     }
@@ -23,19 +24,21 @@ class Student {
     lastName : string;
     age: number;
     subjects : Subject[];
-    constructor(name: string, lastName:string, age : number, subjects : Subject[]){
+
+    constructor(name: string, lastName: string, age: number, subjects: Subject[]) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
         this.subjects = subjects;
     }
+
     //static = metodos o variables para la clase, no accesibles a las instancias
     static getAllStudents(): Student [] {
         return instances;
     } 
 }
 
-let instances : Student []= [    
+let instances : Student[] = [    
     // Student1
     new Student(
         "Manolo",
@@ -54,16 +57,20 @@ let instances : Student []= [
 ];
 
 //Set subject avg
-function setAVG (subject: Subject) {
+function getAVG (subject: Subject) {
     return (subject.grade.reduce((total, grade) => ((total + grade))) / subject.grade.length).toFixed(1);
 }
 
 //Pass or Fail subject based on avg
 function passFail (avg:number){
-    let aprovedFailed = "";
-    avg >=5 ? aprovedFailed = "Approved"
-        : aprovedFailed = "Failed";
-    return aprovedFailed;
+    // MI MIERDA: 
+    // let aprovedFailed = "";
+    // avg >=5 ? aprovedFailed = "Approved"
+    //     : aprovedFailed = "Failed";
+    // return aprovedFailed;
+
+    //ULTRA SOLUCION DEL PROFESOR EN UNA LINEA
+    return avg >= 5 ? "Approved" : "Failed";
 }
 
 //Print Students
@@ -73,7 +80,7 @@ instances.forEach(student => {
     student.subjects.forEach(subject=> {
         //Subject name
         console.log(subject.name)
-        let avg = setAVG(subject);
+        let avg = getAVG(subject);
         //Subject AVG
         console.log(avg);
     })
