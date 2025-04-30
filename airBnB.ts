@@ -39,13 +39,13 @@
   //Guest
 
   abstract class User {
-    protected id: number;
+    protected id: string;
     protected name : string;
     protected lastName : string;
     protected email : string;
     protected password : string;
     
-    constructor(id: number, name: string, lastName : string, email: string, password: string ) {
+    constructor(id: string, name: string, lastName : string, email: string, password: string ) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
@@ -56,7 +56,7 @@
 
   class Host extends User {
     protected properties : Property [];
-    constructor(id: number, name: string, lastName : string, email: string, password: string, properties : Property []){
+    constructor(id: string, name: string, lastName : string, email: string, password: string, properties : Property []){
         super( id, name, lastName, email, password)
         this.properties = properties;
     }
@@ -72,14 +72,14 @@ class Guest extends User {
 }
 
 class Property {
-    protected id: number;
+    protected id: string;
     protected name : string;
     protected address: string; //realmente debería ser un array con un string de calle, number y tal
     protected reserved : boolean; //hay que hacerle una funcion para actualizarla
     protected pricePerNight : number;
     protected capacity : number;
     
-    constructor(id : number, name: string, address : string, reserved: boolean, pricePerNight : number, capacity : number){
+    constructor(id : string, name: string, address : string, reserved: boolean, pricePerNight : number, capacity : number){
         this.id = id;
         this.name = name;
         this.address = address;
@@ -95,6 +95,9 @@ class Reservation {
     
 }
 
+class Payment {
+
+}
 //procesar pagos
 // para el guest 
 //Funccion de historial de reservas
