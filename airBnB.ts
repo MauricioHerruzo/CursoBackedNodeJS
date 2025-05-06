@@ -73,8 +73,7 @@
     }
     //Function para eliminar properties segun su id
     public deleteProperty(property: Property){
-        let indexToDelete = this.properties.findIndex(prop => prop.propertyId === property.propertyId);
-        this.properties.splice(indexToDelete);
+        this.properties = this.properties.filter(hostProperties =>hostProperties !== property)
     }
 
     //Precio por noche de reserva
